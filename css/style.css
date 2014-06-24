@@ -58,6 +58,12 @@ nav li a:hover {
 }
 
 @media screen and (max-width: 768px) {
+	#mobile-nav-trigger.enabled { display: block; }
+	nav ul.enabled { display: none; }
+
+	nav ul.show { display: block; }
+	nav ul.hide { display: none; }
+
 	nav li {
 		float: none;
 		text-align: center;

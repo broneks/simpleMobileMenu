@@ -1,35 +1,23 @@
 $(document).ready(function() {
-	var breakpoint  = 768;
-	var $window     = $(window);
 	var $navul      = $('nav ul');
 	var $navtrigger = $('#mobile-nav-trigger');
 
-	$navtrigger.on('click', function() { 
-		var $that = $(this);
+	$navul.addClass('enabled');
+	$navtrigger.addClass('enabled');
 
-		$that.prop('disabled', true);
+	$navtrigger.on('click', function() { 
+		var $trigger = $(this);
+
+		$trigger.prop('disabled', true);
 
 		$navul.slideToggle(function() {
-			$that.toggleClass('active').prop('disabled', false);
+			var $ul = $(this); 
+
+			$trigger.toggleClass('active').prop('disabled', false);
+
+			$ul.css('display') === 'none' ?
+			    $ul.removeClass('show').addClass('hide').removeAttr('style') :
+			    $ul.removeClass('hide').addClass('show').removeAttr('style');
 		});
-	});
-
-	if ($window.width() <= breakpoint) {
-		$navtrigger.show();
-		$navul.hide();
-	}
-
-	$window.on('resize', function() {
-		if ($window.width() <= breakpoint) {
-			if ($navtrigger.is(':hidden')) {
-				$navtrigger.removeClass('active').show();
-				$navul.hide();
-			}
-		} else {
-			if ($navtrigger.is(':visible')) {
-				$navtrigger.hide().removeClass('active');
-				$navul.show();
-			}
-		}
 	});
 });
